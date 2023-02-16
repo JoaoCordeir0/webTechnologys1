@@ -1,0 +1,32 @@
+body{
+    background-color: #F3F3F3;    
+}
+
+.bodyLogin{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    max-width: 400px;
+}
+
+.imgLogin{
+    margin: auto;
+    width: 100px;
+    background-color: lightblue;
+    margin: 20px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.imgLogin i{
+    font-size: 50pt;
+    color: white;    
+}
+
+.btn-primary{
+    text-align: center;
+    margin: auto;
+    max-width: 100px;
+}
