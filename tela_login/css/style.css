@@ -9,6 +9,7 @@ body{
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     max-width: 400px;
+    box-shadow: 15px 16px lightblue;
 }
 
 .imgLogin{
@@ -29,4 +30,8 @@ body{
     text-align: center;
     margin: auto;
     max-width: 100px;
+    background-color: lightblue;
+    font-weight: bold;
+    border-color: lightblue;
 }
+
