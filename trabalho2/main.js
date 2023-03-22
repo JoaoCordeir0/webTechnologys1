@@ -9,7 +9,7 @@ const createEl = () => {
     titulo.appendChild(texto);
 
     // Insere o elemento filho (titulo) ao elemento pai (body)
-    document.body.insertBefore(titulo, document.getElementById("content")); 
+    document.body.insertBefore(titulo, document.getElementById("button")); 
 }
 
 const deleteEl = () => {
