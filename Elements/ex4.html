@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="validation()">
+    
+    <h1 onmouseover="changeText()" onmouseout="backText()">Vectrão sem escape</h1>
+
+    <div id="container"></div>
+
+    <button onclick="addElement()">Adicionar escape</button>
+    <button onclick="removeElement()">Remover escape</button>
+
+    <script>
+        function validation()
+        {
+            confirm("O site será disponibilizado após você clicar em OK")
+        }
+
+        function changeText() 
+        {
+            const texto = document.querySelector("h1")
+            texto.innerHTML = "Vectrão com escape"
+        }
+
+        function backText()
+        {
+            const texto = document.querySelector("h1")
+            texto.innerHTML = "Vectrão sem escape"
+        }
+
+        function addElement()
+        {
+            const container = document.getElementById("container")           
+            const logo = document.createElement('img')
+
+            logo.src = "./img/escape.png"
+            logo.width = "200"
+            
+            container.appendChild(logo)
+
+            changeText()
+        }
+
+        function removeElement()
+        {
+            const container = document.getElementById("container")           
+            const logo = document.querySelector('img')
+            
+            container.removeChild(logo)
+            
+            backText()
+        }
+
+    </script>
+</body>
+</html>

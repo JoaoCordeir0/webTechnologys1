@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        const container = document.getElementById("container")
+        const title = document.createElement('h1')
+        const subtitle = document.createElement('p')
+        const logo = document.createElement('img')
+
+        const novo = document.createElement('h1')
+        novo.innerHTML = "Vectrão"
+
+        title.innerHTML = "Escape do vectão"
+        title.style.color = "red"
+
+        subtitle.innerHTML = "HKS"
+
+        logo.src = "./img/escape.png"
+        logo.width = "600"
+        
+        container.appendChild(title)
+        container.appendChild(subtitle)
+        container.appendChild(logo)
+
+        container.removeChild(subtitle)
+
+        pai = container.parentNode
+        console.log(pai) 
+
+        container.replaceChild(novo, title)
+    </script>
+</body>
+</html>
