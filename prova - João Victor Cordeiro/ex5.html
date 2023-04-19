@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+
+<body>
+
+    <ul id="pedidos">
+
+    </ul>
+
+    <button onclick="add()">Adicionar</button>
+    <button onclick="remove()">Remover</button>
+
+    <script>
+        function add() 
+        {
+            const pai = document.getElementById("pedidos")
+
+            const li = document.createElement("li")
+            li.innerHTML = "Pedido " + Math.random()
+            
+            pai.appendChild(li)
+        }
+
+        function remove()
+        {
+            const pai = document.getElementById("pedidos")
+
+            const li = document.createElement("li")
+
+            pai.removeChild(li)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <label for="">Informe sua idade:</label>
+        <input type="number" placeholder="19" id="idade">
+        <br>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("form")
+        form.addEventListener('submit', enviar)
+
+        function enviar(e)
+        {
+            e.preventDefault()
+
+            const idade = document.getElementById("idade")
+            if(idade.value > 18)
+            {
+                alert("Di maio")
+            }
+            else
+            {
+                alert("Di meno")
+            }
+        }
+    </script>
+</body>
+</html>

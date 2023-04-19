@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <img id="img" src="img/vectra.jpg" alt="" width="300px">
+    <br>
+    <button onclick="trocaimg()">Troca imagem</button>
+
+    <script>
+        function trocaimg()
+        {
+            const img = document.getElementById("img")
+            img.setAttribute("src", "img/escape.png")
+        }
+    </script>
+</body>
+</html>
