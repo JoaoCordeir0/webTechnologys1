@@ -1,0 +1,9 @@
+main{
+    max-width: 700px !important;
+}
+
+button{
+    max-width: 200px;
+    text-align: center;
+    margin: auto;
+}

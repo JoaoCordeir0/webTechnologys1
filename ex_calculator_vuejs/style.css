@@ -1,0 +1,19 @@
+main{
+    max-width: 410px !important;
+}
+
+button{
+    max-width: 100px;    
+}
+
+input{    
+    margin-right: 10px;
+}
+
+form div{
+    display: inline-flex;
+}
+
+form button{
+    margin-top: 0px;
+}

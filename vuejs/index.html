@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Init VueJs</title>
+</head>
+<body>
+    
+    <div id="app">
+        {{ getFullName() }}
+       
+        <span v-html="fullName"></span>
+        <span v-html="fullName"></span>
+        <span v-html="fullName"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                person: {
+                    firstName: "João",
+                    lastName: "Cordeiro"
+                }               
+            },
+            methods: {
+                getFullName: function() {
+                    console.log("Metodo")
+                    return this.person.firstName + " " + this.person.lastName
+                }
+            },
+            computed: {
+                fullName: function() {
+                    console.log("Computed")
+                    return "<h1 style='color:red'>" + this.person.firstName + " " + this.person.lastName + "</h1>"
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

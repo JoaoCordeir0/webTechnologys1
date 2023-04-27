@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Temp converter</title>
+    <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS." />
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico" />
+    <link rel="canonical" href="https://picocss.com/examples/sign-in/" />
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Main -->
+    <main class="container" id="app">
+      <article class="grid">
+        <div>
+          <hgroup>
+            <h1>Temperatura</h1>
+            <h2>VueJS</h2>
+          </hgroup>
+          <form id="form">
+            <input
+              type="text"
+              name="val_c"
+              placeholder="Valor em C°"
+              aria-label="val_c"              
+              required
+            />    
+            <p>
+                Resultado: {{result}}
+            </p>             
+            <button type="button" class="contrast" v-on:click="convert()"> = </button>
+          </form>
+        </div>
+      </article>
+    </main>
+    <!-- ./ Main -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                result: '',
+            },
+            methods: {
+                convert: function(){
+                    const form = document.getElementById("form")
+                                     
+                    this.result = ((parseFloat(form.val_c.value) * 1.8) + 32).toFixed(2) + " Fahrenheit"
+                }
+            }
+        })
+
+    </script>
+  </body>
+</html>
