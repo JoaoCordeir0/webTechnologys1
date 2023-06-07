@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio calculadora</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <p> {{result}} </p> 
+        <input type="text" v-model="calcNota">        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+               calcNota: '',
+               result: 'Informe a nota'
+            },
+            watch: {
+                calcNota: function(nota){
+                    if (nota != "" && nota < 5 && nota >= 0)
+                    {
+                        this.result = "Nota baixa"
+                    }
+                    else if (nota != "" && nota >= 5 && nota <= 7)
+                    {
+                        this.result = "Nota média"
+                    }
+                    else if (nota != "" && nota > 7 && nota <= 10)
+                    {
+                        this.result = "Nota alta"
+                    }
+                    else 
+                    {
+                        this.result = "Nota inválida"
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-slot</title>
+</head>
+<body>
+
+    <div id="app">
+        Card -> 
+        <card>
+             <template #title></template>
+             <template #content></template>
+        </card>
+
+        <hr>
+        Modal -> 
+        <modal>
+             <template v-slot:header></template>
+             <template #body></template>
+             <template #footer></template>
+        </modal>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        Vue.component('card', {
+            template: `
+                <div style="border:50px solid gray; width:200px; border-radius:20px;">
+                    <b> <slot name="title"> Título do baguio </slot> </b>                    
+                    <p> <slot name="content"> Conteudo do baguio </slot> </p>                    
+                </div>
+            `
+        })
+
+        Vue.component('modal', {
+            template: `
+                <div style="border:50px solid gray; width:200px; border-radius:20px;">
+                    <header>
+                        <p> <slot name="header"> Header do baguio </slot> </p>                    
+                    </header>
+                    <p> <slot name="body"> Body do baguio </slot> </p>                    
+                    <p> <slot name="footer"> Footer do baguio </slot> </p>                    
+                </div>
+            `
+        })
+
+        let app = new Vue({
+            el: '#app',
+            data: {                
+            },            
+        })
+    </script>
+    
+</body>
+</html>

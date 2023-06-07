@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio calculadora</title>
+</head>
+
+<body>
+
+    <div id="app">       
+        <input type="text" v-model="calcMoney" placeholder="Digite o valor em reais">        
+
+        <br>
+        <p> Dolar: {{dolar}} </p> 
+        <p> Euro: {{euro}} </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                calcMoney: '',
+                euro: '',
+                dolar: '',
+            },
+            watch: {
+                calcMoney: function(money){
+                    if (money != "")
+                    {
+                        this.dolar = (parseFloat(money) / 4.95).toFixed(2)
+                        this.euro = (parseFloat(money) / 5.43).toFixed(2)
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-slot</title>
+</head>
+<body>
+
+    <div id="app">
+       <text-component>
+            <template v-slot:header>
+                <h2>Esse é o cabaçalho</h2> 
+            </template>
+            <template #carro>
+                Vectra GTX monstro
+            </template>
+            João
+       </text-component>
+       <text-component>Victor</text-component>
+       <text-component>Cordeiro</text-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        Vue.component('text-component', {
+            template: `
+                <div>
+                    <header> 
+                        <slot name="header"> </slot>    
+                    </header>
+                    <p> <slot name="carro"> </slot> </p>
+                    <p> <slot> </slot> </p>
+                </div>
+            `
+        })
+
+        let app = new Vue({
+            el: '#app',
+            data: {                
+            },            
+        })
+    </script>
+    
+</body>
+</html>

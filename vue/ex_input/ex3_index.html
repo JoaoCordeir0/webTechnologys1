@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <select v-on:change="trocaImg">
+            <option value="https://http2.mlstatic.com/D_NQ_NP_2X_701005-MLB52450015558_112022-F.webp"> Imagem 1</option>
+            <option value="https://http2.mlstatic.com/D_NQ_NP_2X_972126-MLB50923563223_072022-F.webp" > Imagem 2</option>
+            <option value="https://i.pinimg.com/550x/06/5e/62/065e6290728c7a8c24a55e7fa9b0da24.jpg" > Imagem 3</option>
+        </select>
+        <img v-bind:src="src" alt="" width="400">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {         
+                src: 'https://i.pinimg.com/280x280_RS/cb/b2/80/cbb280fa8c687cf3b137df878bf82d08.jpg'          
+            },
+            methods: {
+                trocaImg: function(e){
+                    this.src = e.target.value
+                }                
+            }
+        })
+    </script>
+    
+</body>
+</html>

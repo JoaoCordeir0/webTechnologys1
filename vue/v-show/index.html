@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-IF - V-ELSE - V-ELSEIF</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1 id="1" v-show="isLogged"> Usuário logado - UNIFAE </h1>
+        <h1 id="2" v-if="isLogged"> Usuário logado - UNIFAE</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                isLogged: true
+            },
+        })
+    </script>
+
+</body>
+
+</html>

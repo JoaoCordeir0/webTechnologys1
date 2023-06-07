@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator</title>
+  <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS." />
+  <link rel="shortcut icon" href="https://picocss.com/favicon.ico" />
+  <link rel="canonical" href="https://picocss.com/examples/sign-in/" />
+
+  <!-- Pico.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+
+  <!-- Custom styles for this example -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Main -->
+  <main class="container" id="app">
+    <article class="grid">
+      <div>
+        <hgroup>
+          <h1>Calculator</h1>
+          <h2>VueJS</h2>
+        </hgroup>
+        <form id="form" method="post">
+          <div>
+            <input type="text" name="operation" placeholder="Operação" aria-label="operation" required
+              v-model="operation" />
+            <!-- <button type="button" class="contrast" v-on:click="operation()"> = </button> -->
+          </div>
+        </form>
+        <p>
+          Resultado: {{result}}
+        </p>
+      </div>
+    </article>
+  </main>
+  <!-- ./ Main -->
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        result: '',
+        operation: '',
+      },
+      watch: {
+        operation: function () {
+          const form = document.getElementById("form")
+          let operation = form.operation.value
+          let resultOperation = 0
+
+          if (operation == "") {
+            this.result = "Operação inválida"
+          }
+          else {
+            if (operation.indexOf("+") !== -1) {
+              operation = operation.split("+")
+              let resultOperation = (parseFloat(operation[0]) + parseFloat(operation[1])).toFixed(2)
+              if (!isNaN(resultOperation)) {
+                this.result = resultOperation
+              }
+            }
+            if (operation.indexOf("-") !== -1) {
+              operation = operation.split("-")
+              let resultOperation = (parseFloat(operation[0]) - parseFloat(operation[1])).toFixed(2)
+              if (!isNaN(resultOperation)) {
+                this.result = resultOperation
+              }
+            }
+            if (operation.indexOf("*") !== -1) {
+              operation = operation.split("*")
+              let resultOperation = (parseFloat(operation[0]) * parseFloat(operation[1])).toFixed(2)
+              if (!isNaN(resultOperation)) {
+                this.result = resultOperation
+              }
+            }
+            if (operation.indexOf("/") !== -1) {
+              operation = operation.split("/")
+              let resultOperation = (parseInt(operation[0]) / parseInt(operation[1])).toFixed(2)
+              if (!isNaN(resultOperation)) {
+                this.result = resultOperation
+              }
+            }
+          }
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
