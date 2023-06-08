@@ -11,31 +11,61 @@
     <title>Calculadora</title>
 </head>
 
-<body>
+<body id="body">
+    <!-- Nav -->
+    <nav class="container-fluid">
+        <ul>
+            <li>
+                <a href="./" class="contrast" onclick="event.preventDefault()"><strong>TECNOLOGIAS WEB I</strong></a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Theme</summary>
+                    <ul role="listbox">
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                        <li><a href="#" data-target="modal-theme" onClick="toggleModal(event)">Custom</a></li>
+                    </ul>
+                </details>
+            </li>           
+        </ul>
+    </nav>
+    <!-- ./ Nav -->
+
     <!-- Main -->
     <main class="container" id="app">
-        <article class="grid">
+        <article class="grid" id="calc">
             <div>
                 <hgroup>
                     <h3><i class="fas fa-calculator"></i> Calculadora de Gorjeta</h1>
-                    <h2>Dev by Cordeiro</h2>
+                        <h2>Dev by Cordeiro</h2>
                 </hgroup>
 
                 <form id="form">
-                    <input id="valorTotal" type="text" placeholder="Valor da conta">
+                    <input id="valorTotal" name="valorTotal" type="text" placeholder="Valor da conta">
                     <div style="display: flex;">
-                        <select name="porcentagem" id="porcentagem" required >
+                        <select name="porcentagem" id="porcentagem" required>
                             <option value="" selected>Selecione a porcentagem…</option>
                             <option value="5">5 %</option>
                             <option value="10">10 %</option>
-                            <option value="15">15 %</option>                            
-                        </select>                    
-                        <button v-on-click="removeMsgStatusAddPorcentagem" data-target="modal-porcentagem" onClick="toggleModal(event)" style="max-width: 60px;"><i class="fas fa-plus-circle"></i></button>
+                            <option value="15">15 %</option>
+                        </select>
+                        <button v-on-click="removeMsgStatusAddPorcentagem" data-target="modal-porcentagem"
+                            onClick="toggleModal(event)" style="max-width: 60px;"><i
+                                class="fas fa-plus-circle"></i></button>
                     </div>
-                    <input id="qtdPessoas" type="number" placeholder="Quantidade de pessoas">
+                    <input id="qtdPessoas" name="qtdPessoas" type="number" placeholder="Quantidade de pessoas">
                     <button class="contrast" data-target="modal-adicional" onClick="toggleModal(event)"> Adicionar itens
-                        extra </button>
-                    <button v-on:click="initCalc" type="button"> Calcular </button>
+                        extra <i class="fas fa-plus"></i></button>
+                    <div style="display: flex;">
+                        <button v-on:click="initCalc" type="button"> Calcular <i
+                                class="fas fa-square-root-alt"></i></button>
+                        <button v-on:click="cleanCalc" type="button" class="secondary"> Limpar <i
+                                class="fas fa-eraser"></i></button>
+                    </div>
                     <p v-html="extras"> </p>
                     <p> {{strResult}} </p>
                 </form>
@@ -70,8 +100,8 @@
                     onClick="toggleModal(event)">
                 </a>
                 <h3>Adiciona porcentagem</h3>
-                <input type="text" placeholder="Valor" id="valor_porcentagem">                
-                <p v-html="msgStatusAddPorcentagem"></p>                
+                <input type="text" placeholder="Valor" id="valor_porcentagem">
+                <p v-html="msgStatusAddPorcentagem"></p>
                 <footer>
                     <a href="#cancel" role="button" class="secondary" data-target="modal-porcentagem"
                         onClick="toggleModal(event)">
@@ -83,10 +113,34 @@
                 </footer>
             </article>
         </dialog>
+        <dialog id="modal-theme">
+            <article>
+                <a href="#close" aria-label="Close" class="close" data-target="modal-theme"
+                    onClick="toggleModal(event)">
+                </a>
+                <h3>Customização do tema</h3>
+                <form>
+                    <label for="background_body">Cor do plano de fundo</label>
+                    <input type="color" placeholder="Valor" id="background_body">  
+                    <br>              
+                    <label for="background_calc">Cor da calculadora</label>
+                    <input type="color" placeholder="Valor" id="background_calc">                
+                </form>
+                <footer>
+                    <a href="#cancel" role="button" class="secondary" v-on:click="cleanCustomTheme">
+                        Voltar o padrão
+                    </a>
+                    <a href="#confirm" role="button" data-target="modal-theme" v-on:click="customTheme">
+                        Salvar
+                    </a>
+                </footer>
+            </article>
+        </dialog>
     </main>
     <!-- ./ Main -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="theme.js"></script>
     <script src="modal.js"></script>
     <script>
         let app = new Vue({
@@ -101,19 +155,27 @@
                     let extraValues = document.getElementsByClassName('valueExtra');
                     let somaExtras = 0
 
-                    for (let c = 0; c < extraValues.length; c++)
-                    {
+                    for (let c = 0; c < extraValues.length; c++) {
                         somaExtras = parseInt(extraValues[c].textContent)
-                    }                                
+                    }
 
                     let value = parseInt(form.valorTotal.value) + somaExtras
                     let perc = form.porcentagem.value
                     let qtdPessoas = parseInt(form.qtdPessoas.value)
                     let calc
-                    
+
                     calc = (value + ((value / 100) * parseInt(perc))) / qtdPessoas
-                    
+
                     this.strResult = 'Valor por pessoa = ' + calc.toFixed(2)
+                },
+                cleanCalc: function () {
+                    let form = document.getElementById("form")
+                    form.valorTotal.value = ""
+                    form.porcentagem.value = ""
+                    form.qtdPessoas.value = ""
+                    this.strResult = ""
+                    this.extras = ""
+                    this.msgStatusAddPorcentagem = ""
                 },
                 addGorjetaExtra: function () {
                     let desc = document.getElementById("descExtra").value
@@ -121,7 +183,7 @@
 
                     this.extras = "<li>Descrição: <b>" + desc + "</b> Valor: <b class='valueExtra'>" + value + "</b></li>"
                 },
-                addPorcentagem: function (){
+                addPorcentagem: function () {
                     let pai_select = document.getElementById("porcentagem")
                     let valor_porcentagem = document.getElementById("valor_porcentagem").value
 
@@ -134,13 +196,24 @@
 
                     this.msgStatusAddPorcentagem = "Nova porcentagem de gorjeta adicionada com sucesso!"
                 },
-                removeMsgStatusAddPorcentagem: function()
-                {
+                removeMsgStatusAddPorcentagem: function () {
                     this.msgStatusAddPorcentagem = ""
+                },
+                customTheme: function (){
+                    let back_body = document.getElementById("background_body").value
+                    let back_calc = document.getElementById("background_calc").value
+
+                    let body = document.getElementById("body")
+                    let calc = document.getElementById("calc")
+                    body.style.background = back_body
+                    calc.style.background = back_calc
+                },
+                cleanCustomTheme: function(){
+                    window.location.reload()                                        
                 }
             }
         })
-    </script>
+    </script>    
 </body>
 
 </html>
